@@ -52,6 +52,7 @@ export const Dashboard = () => {
 	const deleteOneButton = (row) => {
 		return (
 			<Button
+				className="delete-one"
 				type="button"
 				severity="danger"
 				icon="pi pi-trash"
@@ -66,8 +67,9 @@ export const Dashboard = () => {
 	const renderHeader = () => {
 		return (
 			<div className="flex justify-content-end">
-				<InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Search by Keyword" style={{ padding: '8px' }} />
+				<InputText className={"search-icon"} value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Search by Keyword" style={{ padding: '8px' }} />
 				<Button
+					className={"delete-selected"}
 					type="button"
 					severity="danger"
 					label="Delete Selected"
@@ -112,6 +114,7 @@ export const Dashboard = () => {
 						paginator
 						paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink"
 						currentPageReportTemplate={`Selected ${selectedRows.length} of ${data.length} rows`}
+						paginatorClassName='first-page'
 						rows={10}
 						emptyMessage={"No such user found!"}
 					>
@@ -119,7 +122,7 @@ export const Dashboard = () => {
 						<Column field='name' header='Name' editor={(options) => textEditor(options)} bodyStyle={{ paddingBottom: '8px' }} />
 						<Column field='email' header='Email' editor={(options) => textEditor(options)} bodyStyle={{ paddingBottom: '8px' }} />
 						<Column field='role' header='Role' editor={(options) => textEditor(options)} bodyStyle={{ paddingBottom: '8px' }} />
-						<Column rowEditor header='Actions' bodyStyle={{ textAlign: 'left', paddingBottom: '8px' }} />
+						<Column bodyClassName='edit' rowEditor header='Actions' bodyStyle={{ textAlign: 'left', paddingBottom: '8px' }} />
 						<Column bodyStyle={{ textAlign: 'left', paddingBottom: '8px' }} body={(data, props) => deleteOneButton(data)} />
 					</DataTable>
 				)
